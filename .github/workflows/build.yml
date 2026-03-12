@@ -9,8 +9,11 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - run: chmod +x gradlew
-    - run: ./gradlew assembleRelease
+    - uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: 8.2
+    - run: gradle assembleRelease
+      working-directory: .
     - uses: actions/upload-artifact@v3
       with:
         name: app
